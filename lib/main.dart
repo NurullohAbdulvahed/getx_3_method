@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:getx_3_method/services/binding.dart';
+import 'pages/create_page.dart';
 import 'pages/home_page.dart';
-import 'services/diservice.dart';
 
-Future main() async{
-  await DIService.init();
 
+void main() {
   runApp(MyApp());
 }
 
@@ -14,13 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
+      initialBinding: ControllersBinding(),
+      getPages: [
+        GetPage(name: "/HomePage", page: () => const HomePage()),
+        GetPage(name: "/CreatePage", page: () => const CreatePage())
+      ],
     );
   }
 }
